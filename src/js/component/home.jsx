@@ -1,25 +1,24 @@
 import React from "react";
 
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 import propTypes from "prop-types";
 
-//create your first component
+import { infoCards } from './data.js';
 
+//create your first component
 
 const NavBar = () => {
 	const navItemStyle = {
 		color: "white",
 	}
 	return (
-		<nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+		<nav className="navbar navbar-expand-md navbar-dark bg-dark">
 			<div className="container">
 				<a className="navbar-brand" style={navItemStyle} href="#">Start Bootstrap</a>
-				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon"></span>
 				</button>
-				<div className="collapse navbar-collapse justify-content-end text-end" id="navbarNav">
+				<div className="collapse navbar-collapse justify-content-end" id="navbarNav">
 					<ul className="navbar-nav">
 						<li className="nav-item">
 							<a className="nav-link active" href="#">Home</a>
@@ -55,68 +54,33 @@ const Jumbotron = () => {
 	)
 };
 
-const Card = (props) => {
+//INTENTO DE HACER LA LISTA DE CARDS DE MANERA AUTOMÁTICA
+const Cards = () => {
 	const cardStyle = {
 		height: "100%",
 	}
-	return (
+	const listCards = infoCards.map(card =>
 		<div className="col-md-3 col-lg-3 col-xl-3 mx-auto mb-3">
 			<div className="card text-center p-0" style={cardStyle}>
-				<img src={props.imageUrl} className="card-img-top" alt="..." />
+				<img src={card.imgUrl} className="card-img-top" alt="..." />
 				<div className="card-body">
-					<h5 className="card-title">{props.title}</h5>
-					<p className="card-text">{props.description}</p>
+					<h5 className="card-title">{card.title}</h5>
+					<p className="card-text">{card.description}</p>
 				</div>
 				<div className="card-footer">
-					<a href={props.buttonUrl} className="btn btn-primary">{props.buttonLabel}</a>
+					<a href={card.buttonUrl} className="btn btn-primary">{card.buttonLabel}</a>
 				</div>
 			</div>
 		</div>
-	)
-};
-
-Card.propTypes = {
-	title: propTypes.string,
-	imageUrl: propTypes.string,
-	description: propTypes.string,
-	buttonUrl: propTypes.string,
-	buttonLabel: propTypes.string,
+	);
+	return (<div class="row">{listCards}</div>)
 };
 
 const Body = () => {
 	return (
 		<div className="container p-0">
 			<Jumbotron />
-			<div class="row">
-				<Card
-					title="Card Title 1"
-					imageUrl="https://picsum.photos/500/325"
-					description="Text 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend ullamcorper quam."
-					buttonUrl="#"
-					buttonLabel="Find out more!"
-				/>
-				<Card
-					title="Card Title 2"
-					imageUrl="https://picsum.photos/500/325?random"
-					description="Text 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sollicitudin diam congue, tempus magna in, auctor turpis. Duis."
-					buttonUrl="#"
-					buttonLabel="Find out more!"
-				/>
-				<Card
-					title="Card Title 3"
-					imageUrl="https://picsum.photos/500/325?grayscale"
-					description="Text 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus egestas velit."
-					buttonUrl="#"
-					buttonLabel="Find out more!"
-				/>
-				<Card
-					title="Card Title 4"
-					imageUrl="https://picsum.photos/500/325?blur"
-					description="Text 4: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ullamcorper mauris pulvinar ante rutrum efficitur. Donec viverra tempus."
-					buttonUrl="#"
-					buttonLabel="Find out more!"
-				/>
-			</div>
+			<Cards />
 		</div>
 	)
 };
