@@ -7,7 +7,7 @@ export const Cards = () => {
         height: "100%",
     }
     const listCards = infoCards.map(card =>
-        <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mb-3">
+        <div key={crypto.randomUUID()} className="col-md-3 col-lg-3 col-xl-3 mx-auto mb-3">
             <div className="card text-center p-0" style={cardStyle}>
                 <img src={card.imgUrl} className="card-img-top" alt="..." />
                 <div className="card-body">
@@ -20,5 +20,5 @@ export const Cards = () => {
             </div>
         </div>
     );
-    return (<div class="row">{listCards}</div>)
+    return (<div className="row">{listCards}</div>)
 };
